@@ -22,7 +22,7 @@ def create_pizza_typeAPI(input_json):
     output_json ={}
     try:
         # import pdb; pdb.set_trace()
-        if pizza_type.objects.filter(name=input_json['name']).exists() == False:
+        if pizza_type.objects.filter(name=input_json['name'],status = 1).exists() == False:
             insert_param = {}
             insert_param['name'] = input_json['name']
             try:

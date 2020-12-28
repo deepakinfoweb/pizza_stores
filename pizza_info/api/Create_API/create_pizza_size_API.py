@@ -21,7 +21,7 @@ function for create api for pizza type
 def create_pizza_size_API(input_json):
     output_json ={}
     try:
-        if pizza_size.objects.filter(pizza_size_name=input_json['name']).exists() == False:
+        if pizza_size.objects.filter(pizza_size_name=input_json['name'],status=1).exists() == False:
             insert_param = {}
             insert_param['pizza_size_name'] = input_json['name']
             try:
