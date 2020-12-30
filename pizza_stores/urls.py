@@ -24,18 +24,21 @@ user define file paths
 from pizza_info.api.Create_API.create_pizza_type_API import CreatePizzaTypeAPI
 from pizza_info.api.Create_API.create_pizza_size_API import CreatePizzaSizeAPI
 from pizza_info.api.Create_API.create_pizza_toppings_API import CreatePizzaToppingsAPI
+from pizza_info.api.Create_API.create_pizza_API import CreatePizzaAPI
 #--create API --End-#
 
 #--Edit API --start-#
 from pizza_info.api.Edit_API.edit_pizza_type_API import EditPizzaType
 from pizza_info.api.Edit_API.edit_pizza_size_API import EditPizzaSize
 from pizza_info.api.Edit_API.edit_pizza_toppings_API import EditPizzaToppings
+from pizza_info.api.Edit_API.edit_pizza_API import EditPizza
 #--Edit API --end --#
 
 #---Delete API-- start--#
 from pizza_info.api.Delete_API.delete_pizza_type_API import DeletePizzaType
 from pizza_info.api.Delete_API.delete_pizza_size_API import DeletePizzaSize
 from pizza_info.api.Delete_API.delete_pizza_topping_API import DeletePizzaToppings
+from pizza_info.api.Delete_API.delete_pizza_API import DeletePizza
 #---Delete API-- end--#
 from pizza_info.api.view_home import home
 
@@ -49,18 +52,21 @@ urlpatterns = [
     url(r'^createPizzaType$', CreatePizzaTypeAPI.as_view(), name='createPizzaType'),
     url(r'^createPizzaSize$', CreatePizzaSizeAPI.as_view(), name='createPizzaSize'),
     url(r'^createPizzaToppings$', CreatePizzaToppingsAPI.as_view(), name='createPizzaToppings'),
+    url(r'^createPizza$', CreatePizzaAPI.as_view(), name='createPizza'),
     #--create API --end-#
 
     #---edit API-- start--#
     url(r'^editpizzatype$', EditPizzaType.as_view(), name='editpizzatype'),
     url(r'^editpizzasize$', EditPizzaSize.as_view(), name='editpizzasize'),
     url(r'^editpizzatoppings$', EditPizzaToppings.as_view(), name='editpizzatoppings'),
+    url(r'^editpizza$', EditPizza.as_view(), name='editpizza'),
     #---edit API-- end--#
 
     #---Delete API-- start--#
     url(r'^deletepizzatype$', DeletePizzaType.as_view(), name='deletepizzatype'),
     url(r'^deletepizzasize$', DeletePizzaSize.as_view(), name='deletepizzasize'),
     url(r'^deletepizzatoppings$', DeletePizzaToppings.as_view(), name='deletepizzatoppings'),
+    url(r'^deletepizza$', DeletePizza.as_view(), name='deletepizza'),
     #--Delete API-- end--#
 
     #----------Pizza store API end ------------------#

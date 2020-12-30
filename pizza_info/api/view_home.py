@@ -2,8 +2,8 @@
 from django.shortcuts import render
 
 """ user file path """
-from pizza_info.serializers import pizza_type_Serializer
-from pizza_info.models import pizza_type
+from pizza_info.serializers import pizza_type_Serializer,PizzaSerializer
+from pizza_info.models import pizza_type,pizza
 
 """
 db connection 
@@ -15,16 +15,31 @@ def home(request):
     output_json = {}
     output_json['Payload'] = {}
     try:
-        # import pdb; pdb.set_trace()
         type_query = """ select * from public.pizza_info_pizza_type where status_id = 1 order by name"""
         pizza_type = dbExecutionQuery(type_query)
         size_query = """ select * from public.pizza_info_pizza_size where status_id = 1 order by pizza_size_name """
         pizza_size = dbExecutionQuery(size_query)
-        toppings_query = """ select * from public.pizza_info_pizza_toppings where status_id = 1 order by toppings"""
+        toppings_query = """ select * from public.pizza_info_toppings where status_id = 1 order by toppings"""
         pizza_toppings = dbExecutionQuery(toppings_query)
         output_json['Payload']['pizza_type'] = pizza_type
         output_json['Payload']['pizza_size'] = pizza_size
         output_json['Payload']['pizza_toppings'] = pizza_toppings
+        pizza_query = """select a.pizza_id,b.name,c.pizza_size_name from public.pizza_info_pizza a join public.pizza_info_pizza_type b on a.pizza_type_id_id =b.pizza_type_id join public.pizza_info_pizza_size c on a.pizza_size_id_id = c.pizza_size_id where a.status_id = 1 """
+        pizza_qs = dbExecutionQuery(pizza_query)
+        pizza_list = []
+        for item in pizza_qs:
+            pizza_item ={}
+            pizza_item['pizza_id'] = item['pizza_id']
+            pizza_item['name'] = item['name']
+            pizza_item['pizza_size_name'] = item['pizza_size_name']
+            toppings_query = """select b.toppings from public.pizza_info_pizza_toppings a join public.pizza_info_toppings b on a.toppings_id_id = b.toppings_id where a.pizza_id_id = """+str(item['pizza_id'])+""" """
+            toppings_query_qs = dbExecutionQuery(toppings_query)
+            topping_list =[]
+            for itemj in toppings_query_qs:
+                topping_list.append(itemj['toppings'])
+            pizza_item['toppings'] =  topping_list
+            pizza_list.append(pizza_item)
+        output_json['Payload']['pizza'] = pizza_list
         output_json['Status'] = "Success" 
         output_json['Massage'] = "Pizza toppings has been edited successfully."
     except Exception as ex:

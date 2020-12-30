@@ -7,7 +7,7 @@ import datetime
 """
 user path file 
 """
-from pizza_info.models import pizza_toppings
+from pizza_info.models import toppings
 
 class EditPizzaToppings(APIView):
     def post(self,request,format='Json'):
@@ -19,8 +19,8 @@ class EditPizzaToppings(APIView):
 def edit_pizza_toppings(input_json):
     output_json = {}
     try:
-        if pizza_toppings.objects.filter(pizza_toppings_id = input_json['pizza_toppings_id'],status=1).exists():
-            pizza_toppings.objects.filter(pizza_toppings_id = input_json['pizza_toppings_id']).update(toppings=input_json['toppings'],last_modified_date=datetime.datetime.now())
+        if toppings.objects.filter(toppings_id = input_json['pizza_toppings_id'],status=1).exists():
+            toppings.objects.filter(toppings_id = input_json['pizza_toppings_id']).update(toppings=input_json['toppings'],last_modified_date=datetime.datetime.now())
             output_json['Status'] = "Success" 
             output_json['Massage'] = "Pizza toppings has been edited successfully."
         else:

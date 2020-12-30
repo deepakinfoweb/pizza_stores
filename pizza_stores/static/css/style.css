@@ -1,0 +1,42 @@
+body {
+	background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/97/40/8057f0a46c7aacb.jpg");
+}
+
+.shade {
+	box-shadow: 0 15px 30px rgba(0, 0, 0, .3) !important;
+}
+
+.shade1 {
+	box-shadow: 0 .10rem .3rem rgba(0, 0, 0, .15) !important;
+}
+
+a,
+a label {
+	cursor: pointer;
+}
+
+footer {
+	/* position: fixed; */
+	/* height: 100px;
+    bottom: 0;
+    width: 100%; */
+	/* position: fixed; */
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #111 !important;
+	color: white;
+	text-align: center;
+}
+
+.bg-4 {
+	background-color: #2f2f2f;
+	/* Black Gray */
+	color: #fff;
+}
+
+.bg {
+	background-color: #fff;
+}
+
+

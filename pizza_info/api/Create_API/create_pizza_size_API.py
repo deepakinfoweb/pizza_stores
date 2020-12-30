@@ -29,19 +29,19 @@ def create_pizza_size_API(input_json):
                 if serialized_pizza_params.is_valid(raise_exception = True):
                     serialized_pizza_params.save()
                     output_json['Status'] = "Success"
-                    output_json['Message'] = "Pizza size have been fetched successfully"
+                    output_json['Message'] = "Pizza size have been created successfully"
                 else:
                     output_json['Status'] = "Failure"
-                    output_json['Message'] = "Pizza size have not been fetched successfully"
+                    output_json['Message'] = "Pizza size have not been created successfully"
             except Exception as ex:
                 output_json['Status'] = "Failure"
-                output_json['Message'] = "Pizza size have not been fetched successfully. Exception encountered is " + str(ex)
+                output_json['Message'] = "Pizza size have not been created successfully. Exception encountered is " + str(ex)
         else:
             output_json['Status'] = "Failure"
             output_json['Message'] = "Pizza size already exists in databse"
         return output_json
     except Exception as ex:
         output_json['Status'] = "Failure"
-        output_json['Message'] = "Pizza size have not been fetched successfully. Exception encountered is " + str(ex)
+        output_json['Message'] = "Pizza size have not been created successfully. Exception encountered is " + str(ex)
         output_json['Payload'] = None
         return output_json

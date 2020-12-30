@@ -21,7 +21,6 @@ function for create api for pizza type
 def create_pizza_typeAPI(input_json):
     output_json ={}
     try:
-        # import pdb; pdb.set_trace()
         if pizza_type.objects.filter(name=input_json['name'],status = 1).exists() == False:
             insert_param = {}
             insert_param['name'] = input_json['name']
@@ -30,19 +29,19 @@ def create_pizza_typeAPI(input_json):
                 if serialized_pizza_params.is_valid(raise_exception = True):
                     serialized_pizza_params.save()
                     output_json['Status'] = "Success"
-                    output_json['Message'] = "Pizza type have been fetched successfully"
+                    output_json['Message'] = "Pizza type have been created successfully"
                 else:
                     output_json['Status'] = "Failure"
-                    output_json['Message'] = "Pizza type have not been fetched successfully"
+                    output_json['Message'] = "Pizza type have not been created successfully"
             except Exception as ex:
                 output_json['Status'] = "Failure"
-                output_json['Message'] = "Pizza type have not been fetched successfully. Exception encountered is " + str(ex)
+                output_json['Message'] = "Pizza type have not been created successfully. Exception encountered is " + str(ex)
         else:
             output_json['Status'] = "Failure"
             output_json['Message'] = "Pizza type already exists in databse"
         return output_json
     except Exception as ex:
         output_json['Status'] = "Failure"
-        output_json['Message'] = "Pizza type have not been fetched successfully. Exception encountered is " + str(ex)
+        output_json['Message'] = "Pizza type have not been created successfully. Exception encountered is " + str(ex)
         output_json['Payload'] = None
         return output_json
